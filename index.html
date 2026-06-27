@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EduLearn – Complete online teaching and learning platform with courses, quizzes, and progress tracking." />
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="EduLearn" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="EduLearn – Online Teaching & Learning" />
+  <meta property="og:description" content="Learn anything, teach everything." />
+  <meta property="og:type" content="website" />
+
+  <title>EduLearn – Online Teaching & Learning Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="https://via.placeholder.com/32x32/6366f1/ffffff?text=EL" />
+  <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192/6366f1/ffffff?text=EL" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">EL</div>
+      <div class="logo-text">Edu<span>Learn</span></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-label">Main Menu</div>
+
+      <div class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">🏠</span> Dashboard
+      </div>
+      <div class="nav-item" data-page="courses">
+        <span class="nav-icon">📚</span> Courses
+        <span class="nav-badge">12</span>
+      </div>
+      <div class="nav-item" data-page="lesson">
+        <span class="nav-icon">▶️</span> My Lessons
+      </div>
+      <div class="nav-item" data-page="quiz">
+        <span class="nav-icon">🧠</span> Quizzes
+      </div>
+
+      <div class="nav-label" style="margin-top:8px;">Community</div>
+
+      <div class="nav-item" data-page="leaderboard">
+        <span class="nav-icon">🏆</span> Leaderboard
+      </div>
+      <div class="nav-item" data-page="dashboard" id="nav-notif" onclick="toggleNotif(event)">
+        <span class="nav-icon">🔔</span> Notifications
+        <span class="nav-badge" id="notif-badge">3</span>
+      </div>
+
+      <div class="nav-label" style="margin-top:8px;">Settings</div>
+      <div class="nav-item" onclick="showToast('⚙️ Settings coming soon!', 'success')">
+        <span class="nav-icon">⚙️</span> Settings
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">AK</div>
+        <div class="user-info">
+          <div class="user-name">Ali Khan</div>
+          <div class="user-role">Student · Pro</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- ══ MAIN ══════════════════════════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="page-title">Dashboard</div>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search courses, lessons…" id="searchInput" oninput="handleSearch(this.value)" />
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-icon" onclick="toggleNotif(event)" title="Notifications">
+          🔔 <span class="notif-dot"></span>
+        </button>
+        <button class="btn-icon" onclick="toggleDarkMode()" title="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <!-- ── DASHBOARD ───────────────────────────────────── -->
+    <section class="page active" id="page-dashboard">
+      <div class="welcome-banner">
+        <div class="welcome-greeting">Good morning, <span>Ali! 👋</span></div>
+        <div class="welcome-sub">You're on a 7-day learning streak. Keep it up!</div>
+        <div class="welcome-stats">
+          <div class="w-stat">
+            <span class="w-stat-val" data-target="42">0</span>
+            <span class="w-stat-label">Hours Learned</span>
+          </div>
+          <div class="w-stat">
+            <span class="w-stat-val" data-target="7">0</span>
+            <span class="w-stat-label">Day Streak 🔥</span>
+          </div>
+          <div class="w-stat">
+            <span class="w-stat-val" data-target="3">0</span>
+            <span class="w-stat-label">Certificates</span>
+          </div>
+          <div class="w-stat">
+            <span class="w-stat-val" data-target="1240">0</span>
+            <span class="w-stat-label">XP Points</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon indigo">📖</div>
+          <div>
+            <div class="stat-val">5</div>
+            <div class="stat-label">Enrolled Courses</div>
+            <div class="stat-change up">↑ +2 this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon mint">✅</div>
+          <div>
+            <div class="stat-val">28</div>
+            <div class="stat-label">Lessons Completed</div>
+            <div class="stat-change up">↑ +5 this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">🎯</div>
+          <div>
+            <div class="stat-val">87%</div>
+            <div class="stat-label">Quiz Average</div>
+            <div class="stat-change up">↑ +4% vs last</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon rose">⏱️</div>
+          <div>
+            <div class="stat-val">2.4h</div>
+            <div class="stat-label">Today's Study</div>
+            <div class="stat-change down">↓ Goal: 3h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress + Activity -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-header">
+            <div class="section-title">Course Progress</div>
+            <button class="btn-link" onclick="navigate('courses')">View All</button>
+          </div>
+          <div class="progress-list">
+            <div class="progress-item">
+              <div class="progress-meta">
+                <span class="progress-course">Python for Beginners</span>
+                <span class="progress-pct">78%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" data-width="78"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta">
+                <span class="progress-course">Web Development Bootcamp</span>
+                <span class="progress-pct">54%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" data-width="54"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta">
+                <span class="progress-course">Data Science Fundamentals</span>
+                <span class="progress-pct">32%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" data-width="32"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta">
+                <span class="progress-course">UI/UX Design Mastery</span>
+                <span class="progress-pct">91%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" data-width="91"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta">
+                <span class="progress-course">Machine Learning Basics</span>
+                <span class="progress-pct">15%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" data-width="15"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-header">
+            <div class="section-title">Recent Activity</div>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-dot">🎯</div>
+              <div class="activity-text">
+                <strong>Quiz Completed</strong>
+                <p>Python Basics — scored 92%</p>
+                <div class="activity-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">▶️</div>
+              <div class="activity-text">
+                <strong>Lesson Watched</strong>
+                <p>CSS Grid Layout — 24 min</p>
+                <div class="activity-time">5 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">🏆</div>
+              <div class="activity-text">
+                <strong>Badge Earned</strong>
+                <p>Week Warrior — 7-day streak!</p>
+                <div class="activity-time">Yesterday</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">📚</div>
+              <div class="activity-text">
+                <strong>Course Enrolled</strong>
+                <p>Machine Learning Basics</p>
+                <div class="activity-time">2 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended -->
+      <div class="section-header" style="margin-top:4px;">
+        <div class="section-title">Recommended for You</div>
+        <button class="btn-link" onclick="navigate('courses')">Browse All</button>
+      </div>
+      <div class="grid-3">
+        <div class="course-card" onclick="navigate('lesson')">
+          <div class="course-thumbnail gradient-2">🤖</div>
+          <div class="course-body">
+            <div class="course-category">AI & ML</div>
+            <div class="course-title">Deep Learning with TensorFlow</div>
+            <div class="course-meta">
+              <span class="course-meta-item">📹 32 lessons</span>
+              <span class="course-meta-item">⏱ 12h</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-val">4.9</span>
+              </div>
+              <button class="btn-enroll" onclick="enrollCourse(event, this)">Enroll</button>
+            </div>
+          </div>
+        </div>
+        <div class="course-card" onclick="navigate('lesson')">
+          <div class="course-thumbnail gradient-5">☁️</div>
+          <div class="course-body">
+            <div class="course-category">Cloud</div>
+            <div class="course-title">AWS Solutions Architect</div>
+            <div class="course-meta">
+              <span class="course-meta-item">📹 48 lessons</span>
+              <span class="course-meta-item">⏱ 20h</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-val">4.7</span>
+              </div>
+              <button class="btn-enroll" onclick="enrollCourse(event, this)">Enroll</button>
+            </div>
+          </div>
+        </div>
+        <div class="course-card" onclick="navigate('lesson')">
+          <div class="course-thumbnail gradient-6">🎨</div>
+          <div class="course-body">
+            <div class="course-category">Design</div>
+            <div class="course-title">Figma: From Zero to Pro</div>
+            <div class="course-meta">
+              <span class="course-meta-item">📹 26 lessons</span>
+              <span class="course-meta-item">⏱ 9h</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-val">4.8</span>
+              </div>
+              <button class="btn-enroll badge free" onclick="enrollCourse(event, this)">Free</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COURSES ──────────────────────────────────────── -->
+    <section class="page" id="page-courses">
+      <div class="filter-row" id="courseFilters">
+        <button class="filter-btn active" data-filter="all">All Courses</button>
+        <button class="filter-btn" data-filter="programming">Programming</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="ai">AI & ML</button>
+        <button class="filter-btn" data-filter="cloud">Cloud</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+      </div>
+
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ── LESSON VIEWER ───────────────────────────────── -->
+    <section class="page" id="page-lesson">
+      <div class="lesson-layout">
+        <div>
+          <div class="video-player">
+            <div class="video-placeholder">
+              <div class="play-btn" onclick="playLesson()">▶</div>
+              <div class="video-label" id="videoLabel">Python for Beginners — Lesson 12: Functions</div>
+            </div>
+          </div>
+
+          <div class="lesson-info">
+            <div class="lesson-title" id="lessonTitle">Functions in Python: Parameters & Return Values</div>
+            <div class="lesson-desc">
+              In this lesson, we'll explore how Python functions work — defining them, passing parameters,
+              using default arguments, and returning values. Functions are the building blocks of clean,
+              reusable code. By the end, you'll write your own modular programs with confidence.
+            </div>
+            <div class="lesson-controls">
+              <button class="btn btn-ghost btn-sm" onclick="prevLesson()">← Previous</button>
+              <button class="btn btn-primary btn-sm" onclick="markDone()">✓ Mark as Done</button>
+              <button class="btn btn-ghost btn-sm" onclick="nextLesson()">Next →</button>
+            </div>
+          </div>
+
+          <!-- Notes Section -->
+          <div class="card" style="margin-top:16px;">
+            <div class="section-header">
+              <div class="section-title">My Notes</div>
+              <button class="btn-link" onclick="saveNote()">Save Note</button>
+            </div>
+            <textarea id="noteArea" style="width:100%;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;font-size:13px;resize:vertical;min-height:100px;margin-top:8px;" placeholder="Take notes while watching…"></textarea>
+          </div>
+        </div>
+
+        <!-- Curriculum -->
+        <div class="card curriculum-sidebar" style="padding:0;">
+          <div class="curriculum-title">📋 Course Curriculum <span style="color:var(--text-muted);font-size:12px;font-weight:400;">5/18 done</span></div>
+          <div class="curriculum-list" id="curriculumList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── QUIZ ────────────────────────────────────────── -->
+    <section class="page" id="page-quiz">
+      <div class="quiz-container">
+
+        <!-- Quiz Selector -->
+        <div id="quizSelector">
+          <div class="section-header">
+            <div class="section-title">Choose a Quiz</div>
+          </div>
+          <div class="grid-2">
+            <div class="card" style="cursor:pointer;transition:all var(--transition);" onmouseenter="this.style.borderColor='var(--accent-indigo)'" onmouseleave="this.style.borderColor=''" onclick="startQuiz('python')">
+              <div style="font-size:36px;margin-bottom:10px;">🐍</div>
+              <div style="font-family:var(--font-display);font-weight:600;margin-bottom:6px;">Python Fundamentals</div>
+              <div style="font-size:13px;color:var(--text-muted);">10 questions · 10 minutes</div>
+              <div style="margin-top:12px;display:flex;gap:8px;">
+                <span class="badge badge-indigo">Intermediate</span>
+                <span class="badge badge-mint">Popular</span>
+              </div>
+            </div>
+            <div class="card" style="cursor:pointer;transition:all var(--transition);" onmouseenter="this.style.borderColor='var(--accent-indigo)'" onmouseleave="this.style.borderColor=''" onclick="startQuiz('web')">
+              <div style="font-size:36px;margin-bottom:10px;">🌐</div>
+              <div style="font-family:var(--font-display);font-weight:600;margin-bottom:6px;">Web Dev Essentials</div>
+              <div style="font-size:13px;color:var(--text-muted);">8 questions · 8 minutes</div>
+              <div style="margin-top:12px;display:flex;gap:8px;">
+                <span class="badge badge-amber">Beginner</span>
+              </div>
+            </div>
+            <div class="card" style="cursor:pointer;transition:all var(--transition);" onmouseenter="this.style.borderColor='var(--accent-indigo)'" onmouseleave="this.style.borderColor=''" onclick="startQuiz('ai')">
+              <div style="font-size:36px;margin-bottom:10px;">🤖</div>
+              <div style="font-family:var(--font-display);font-weight:600;margin-bottom:6px;">AI & Machine Learning</div>
+              <div style="font-size:13px;color:var(--text-muted);">12 questions · 15 minutes</div>
+              <div style="margin-top:12px;display:flex;gap:8px;">
+                <span class="badge badge-rose">Advanced</span>
+              </div>
+            </div>
+            <div class="card" style="cursor:pointer;transition:all var(--transition);" onmouseenter="this.style.borderColor='var(--accent-indigo)'" onmouseleave="this.style.borderColor=''" onclick="startQuiz('design')">
+              <div style="font-size:36px;margin-bottom:10px;">🎨</div>
+              <div style="font-family:var(--font-display);font-weight:600;margin-bottom:6px;">UI/UX Design Principles</div>
+              <div style="font-size:13px;color:var(--text-muted);">8 questions · 8 minutes</div>
+              <div style="margin-top:12px;display:flex;gap:8px;">
+                <span class="badge badge-indigo">Intermediate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Quiz -->
+        <div id="activeQuiz" style="display:none;">
+          <div class="quiz-header">
+            <div class="quiz-meta">
+              <div class="quiz-subject" id="quizSubject">Python Fundamentals</div>
+              <div class="quiz-timer" id="quizTimer">⏱ 10:00</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:13px;color:var(--text-muted);" id="questionCounter">Question 1 of 10</span>
+              <span style="font-size:13px;color:var(--accent-mint);" id="scoreCounter">Score: 0</span>
+            </div>
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="quizProgressFill" style="width:10%"></div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div class="question-num" id="questionNum">Question 1</div>
+            <div class="question-text" id="questionText">Loading question...</div>
+            <div class="options-list" id="optionsList"></div>
+          </div>
+
+          <div class="quiz-actions">
+            <div class="question-counter" id="questionDots"></div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-ghost btn-sm" onclick="skipQuestion()">Skip</button>
+              <button class="btn btn-primary btn-sm" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Result -->
+        <div id="quizResult" style="display:none;">
+          <div class="card quiz-result">
+            <div style="font-size:52px;" id="resultEmoji">🎉</div>
+            <div class="result-score" id="resultScore">--</div>
+            <div class="result-label" id="resultLabel">Quiz Completed!</div>
+            <div class="result-breakdown">
+              <div class="rb-item">
+                <div class="rb-val" id="rbCorrect">--</div>
+                <div class="rb-label">Correct</div>
+              </div>
+              <div class="rb-item">
+                <div class="rb-val" id="rbWrong">--</div>
+                <div class="rb-label">Wrong</div>
+              </div>
+              <div class="rb-item">
+                <div class="rb-val" id="rbTime">--</div>
+                <div class="rb-label">Time Taken</div>
+              </div>
+              <div class="rb-item">
+                <div class="rb-val" id="rbXP" style="color:var(--accent-mint)">--</div>
+                <div class="rb-label">XP Earned</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;">
+              <button class="btn btn-ghost" onclick="retakeQuiz()">🔄 Retake</button>
+              <button class="btn btn-primary" onclick="navigate('leaderboard')">🏆 Leaderboard</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── LEADERBOARD ─────────────────────────────────── -->
+    <section class="page" id="page-leaderboard">
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;">
+        <div>
+          <div class="filter-row">
+            <button class="filter-btn active" onclick="filterLB('weekly',this)">This Week</button>
+            <button class="filter-btn" onclick="filterLB('monthly',this)">This Month</button>
+            <button class="filter-btn" onclick="filterLB('alltime',this)">All Time</button>
+          </div>
+          <div class="leaderboard-table" id="leaderboardTable">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="section-title" style="margin-bottom:14px;">🏅 Your Badges</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;" id="badgeList">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title" style="margin-bottom:14px;">📊 Your Stats</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:var(--text-muted);">Rank</span>
+                <span style="font-weight:600;">#4 of 1,240</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:var(--text-muted);">Total XP</span>
+                <span style="font-weight:600;color:var(--accent-mint);">1,240 pts</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:var(--text-muted);">Quizzes Passed</span>
+                <span style="font-weight:600;">18</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:var(--text-muted);">Streak</span>
+                <span style="font-weight:600;">🔥 7 days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /main-content -->
+</div><!-- /app-shell -->
+
+<!-- ══ NOTIFICATIONS PANEL ═══════════════════════════════ -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header">
+    <h4>Notifications</h4>
+    <span class="notif-clear" onclick="clearNotifications()">Mark all read</span>
+  </div>
+  <div class="notif-list">
+    <div class="notif-item unread">
+      <div class="notif-dot-indicator"></div>
+      <div class="notif-item-text">
+        <strong>New lesson available</strong>
+        <p>Python Lesson 13: OOP Basics is now live</p>
+        <div class="notif-item-time">10 minutes ago</div>
+      </div>
+    </div>
+    <div class="notif-item unread">
+      <div class="notif-dot-indicator"></div>
+      <div class="notif-item-text">
+        <strong>Quiz reminder</strong>
+        <p>You haven't taken the Web Dev quiz yet!</p>
+        <div class="notif-item-time">2 hours ago</div>
+      </div>
+    </div>
+    <div class="notif-item unread">
+      <div class="notif-dot-indicator"></div>
+      <div class="notif-item-text">
+        <strong>Badge unlocked 🏆</strong>
+        <p>You earned the "Week Warrior" badge!</p>
+        <div class="notif-item-time">Yesterday</div>
+      </div>
+    </div>
+    <div class="notif-item">
+      <div class="notif-dot-indicator" style="opacity:0"></div>
+      <div class="notif-item-text">
+        <strong>Course completed</strong>
+        <p>Congratulations on finishing HTML Basics!</p>
+        <div class="notif-item-time">3 days ago</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══════════════════════════════════════════════ -->
+<div class="toast" id="toast">
+  <span id="toastMsg">Message here</span>
+</div>
+
+<!-- ══ PWA INSTALL BANNER ═════════════════════════════════ -->
+<div class="pwa-banner" id="pwaBanner">
+  <div class="pwa-banner-title">📱 Install EduLearn</div>
+  <div class="pwa-banner-text">Add to your home screen for quick access and offline learning.</div>
+  <div class="pwa-banner-actions">
+    <button class="btn btn-ghost btn-sm" onclick="dismissPWA()">Not now</button>
+    <button class="btn btn-primary btn-sm" onclick="installPWA()">Install</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
