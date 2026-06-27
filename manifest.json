@@ -1,0 +1,60 @@
+{
+  "name": "EduLearn - Online Teaching & Learning",
+  "short_name": "EduLearn",
+  "description": "A complete online teaching and learning platform with courses, quizzes, and progress tracking.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/72x72/6366f1/ffffff?text=EL",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://via.placeholder.com/96x96/6366f1/ffffff?text=EL",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://via.placeholder.com/128x128/6366f1/ffffff?text=EL",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://via.placeholder.com/192x192/6366f1/ffffff?text=EL",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/6366f1/ffffff?text=EL",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "My Courses",
+      "short_name": "Courses",
+      "description": "View your enrolled courses",
+      "url": "/index.html#courses",
+      "icons": [{ "src": "https://via.placeholder.com/96x96/6366f1/ffffff?text=C", "sizes": "96x96" }]
+    },
+    {
+      "name": "Take Quiz",
+      "short_name": "Quiz",
+      "description": "Start a quiz",
+      "url": "/index.html#quiz",
+      "icons": [{ "src": "https://via.placeholder.com/96x96/6366f1/ffffff?text=Q", "sizes": "96x96" }]
+    }
+  ]
+}
